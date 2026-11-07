@@ -43,9 +43,9 @@ tiangong/
 
 仅显式调用：用户说"按天工来""按天工流程开发""按手册开发""按流程开发"，或点名立项书、需求规格、通检表等手册工件。开始新项目或有多个步骤的任务**不会**自动加载本 skill；用户说"不用走流程了"时只保留四要素、排错五项、安全最低集。
 
-## 安装（暂未安装）
+## 安装
 
-试用满意后，把整个 `tiangong/` 目录复制到 `C:\Users\Lenovo\.agents\skills\tiangong\` 即可全局生效；或放到某项目的 `.agents/skills/` 下仅对该项目生效。
+把整个 `tiangong/` 目录复制到用户级 skills 目录即全局生效（ZCode 等遵循 `.agents/skills` 约定的工具为 `~/.agents/skills/tiangong/`，Claude Code 为 `~/.claude/skills/tiangong/`）；或放到某项目的 `.agents/skills/` 下仅对该项目生效。
 
 ## 试运行建议
 

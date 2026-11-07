@@ -2,7 +2,7 @@
 
 > 开发如开物——先明法度，后施巧艺；不靠灵感，按工序。
 
-**tiangong** 是一个给 AI 编程 agent 用的开发流程 skill：把一套九阶段产品开发流程法典化，使 agent 不靠灵感推进项目，而按约定好的工序、交付物与通过标准一步步营造。适用于支持 Agent Skills 的编码工具（ZCode、Claude Code、Gemini CLI、Cursor 等）。
+**tiangong** 是一个给 AI 编程 agent 用的开发流程 skill：把一套九阶段产品开发流程法典化，使 agent 不靠灵感推进项目，而按约定好的工序、交付物与通过标准一步步营造。适用于支持 Agent Skills 的编码工具（ZCode、Claude Code、Gemini CLI、Cursor 等），尤其适合第一次带着 AI 做完整项目的 **vibe coding 新手**（见下文「写给谁」）。
 
 它**只在被点名时生效**：说"按天工来""按手册开发"才加载；日常小修小补、单文件问答不会被打扰。
 
@@ -15,6 +15,18 @@
 3. **对话越长，约定越丢。** 早先说好的接口字段，混进后来已作废的结论；换会话、换机器，什么都不剩。
 
 天工的答案：**先约定后生成、一次一小步、一切留痕于仓库。** 需求、结构、接口先写成文档放进 `docs/`，代码按约定生成；选哪道题、边界画在哪、怎样算通过，由人拍板，模型干活。
+
+## 写给谁：vibe coding 新手
+
+天工首先写给**第一次（或前几次）让 AI 帮自己做完整项目的人**。新手不缺模型能力，缺的是三样东西：
+
+- **怎么下任务**——不知道一句需求要拆成"约束、需求、范围、输出"才好验收，于是得到一堆看着完整、无法核对的东西；
+- **怎么判完成**——验收全是形容词，做完说不清过还是不过；
+- **出了错怎么说**——只会说"不好使"，agent 只能瞎猜。
+
+天工把这三样全部变成模板与话术：说一句"按天工来"，agent 会按九阶段引导你把立项书、验收句、接口约定一项项问出来——你只负责拍板，它负责落成仓库里的文档。每个阶段末有"通过标准"自检，判不出过就不进下一阶段。
+
+带新手的教师与团队负责人可以直接把它当教学与协作的公共工序；有经验的开发者也可以用它把个人习惯固化成 agent 可执行的纪律。
 
 ## 它是怎么工作的
 
@@ -62,8 +74,10 @@
 把 `tiangong/` 目录复制到你的 skills 目录：
 
 ```bash
+git clone https://github.com/jjjmmmmm/tiangong-skill.git
+
 # 全局安装（ZCode 等遵循 .agents/skills 约定的工具）
-cp -r tiangong/ ~/.agents/skills/tiangong/
+cp -r tiangong-skill/tiangong/ ~/.agents/skills/tiangong/
 
 # Claude Code
 cp -r tiangong/ ~/.claude/skills/tiangong/
@@ -99,4 +113,32 @@ Windows 下即复制到 `C:\Users\<你>\.agents\skills\tiangong\`。装完说一
 4. **一切留痕于仓库**——不依赖对话记录。
 5. **人定机做**——越界的决定须向用户提出，不得自行拍板。
 
-天工管流程与纪律；grill-me、tdd、code-review、research 等专用 skill（若已安装）干具体的活，没有就按天工自身工序执行。
+## 配套 skill
+
+天工管流程与纪律；下列专用 skill 干具体的活。全部来自开源仓库 [mattpocock/skills](https://github.com/mattpocock/skills)（MIT 许可），可选装——未安装时，天工按自身工序执行同样环节：
+
+| 环节 | skill |
+|---|---|
+| 立项前拷问需求（给谁用、成功标准、不做什么） | [grill-me](https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me) |
+| 把已有讨论收束成规格文档 | [to-spec](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-spec) |
+| 把规格/计划拆成带依赖的任务票 | [to-tickets](https://github.com/mattpocock/skills/tree/main/skills/engineering/to-tickets) |
+| 按规格或任务票实现一块 | [implement](https://github.com/mattpocock/skills/tree/main/skills/engineering/implement) |
+| 红—绿—重构做增量（对应阶段六自测） | [tdd](https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd) |
+| 审查改动（对应合并纪律） | [code-review](https://github.com/mattpocock/skills/tree/main/skills/engineering/code-review) |
+| 统一术语与领域模型（阶段二/三） | [domain-modeling](https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling) |
+| 设计与加深模块接口（阶段二） | [codebase-design](https://github.com/mattpocock/skills/tree/main/skills/engineering/codebase-design) |
+| 压缩会话为交接文档，另起会话继续 | [handoff](https://github.com/mattpocock/skills/tree/main/skills/productivity/handoff) |
+| 对外部问题做高信源调研并落档 | [research](https://github.com/mattpocock/skills/tree/main/skills/engineering/research) |
+
+## 参考与致谢
+
+天工的九阶段流程与纪律为原创（源自作者的「AI 开发实践」课程设计）。部分概念借鉴自下列开源项目——它们均为 **MIT 许可证**；天工只借鉴其**思路**，全部文字与模板为独立撰写，未复制任何代码或文本，无许可合规问题：
+
+- [github/spec-kit](https://github.com/github/spec-kit)——"项目宪法"（constitution）：项目级持久规则文件的思路 → 天工的 `docs/CONSTITUTION.md`
+- [obra/superpowers](https://github.com/obra/superpowers)——系统化排错与检查点提交的纪律 → 天工的"根因四步""检查点提交"
+- [mattpocock/skills](https://github.com/mattpocock/skills)——"总流程 + 专用 skill 分工"的组合方式 → 天工的调度衔接表（见上）
+- [Conventional Commits](https://www.conventionalcommits.org)——提交说明格式的社区约定（仅采用其格式约定）
+
+## 许可证
+
+本仓库以 [MIT 许可证](LICENSE) 开源，可自由使用、修改与分发，仅需保留版权与许可声明。
