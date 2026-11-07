@@ -10,7 +10,7 @@
 
 ```text
 tiangong/
-├── SKILL.md          总纲：触发条件、五条总纲、任务四要素、九阶段总览与路由、跨阶段纪律、本地 skill 调度衔接
+├── SKILL.md          总纲：触发条件、五条总纲、任务四要素、九阶段总览与路由、增补与新一轮迭代、跨阶段纪律、本地 skill 调度衔接
 ├── references/       九阶段细则（进入该阶段时按需阅读）
 │   ├── 01-inception.md        立项与需求规格
 │   ├── 02-structure.md        组成与技术选型
@@ -21,15 +21,16 @@ tiangong/
 │   ├── 07-integration-debug.md 贯通验证与排错
 │   ├── 08-delivery.md         验证与交付准备
 │   └── 09-retrospective.md    结项复盘与大报告
-└── templates/        十四份工件骨架
+└── templates/        十五份工件骨架
     ├── CONSTITUTION.md       项目宪法（本项目不变铁律）
     ├── charter.md            立项书
     ├── requirements.md       需求规格
     ├── architecture.md       架构说明（模块职责表+选型比选表）
     ├── api-contract.md       接口约定
     ├── PROJECT_MEMO.md       项目备忘
-    ├── daily-plan.md         当天计划
-    ├── devlog.md             开发日志
+    ├── master-plan.md        总计划（放 docs/plan/PLAN.md，每次为一步）
+    ├── session-plan.md       按次计划（放 docs/plan/<步骤号>.md）
+    ├── devlog.md             开发日志（按次追加）
     ├── demo.md               演示说明
     ├── gaps.md               差距清单（放入 docs/gaps.md）
     ├── smoke.md              通检表
